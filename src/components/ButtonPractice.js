@@ -5,10 +5,21 @@ import {
   IconButton,
   Typography,
 } from "@material-ui/core";
-import React from "react";
+
+import { ToggleButtonGroup, ToggleButton } from "@material-ui/lab";
+
+import React, { useState } from "react";
 import SendIcon from "@material-ui/icons/Send";
+import ViewListIcon from "@material-ui/icons/ViewList";
+import ViewModuleIcon from "@material-ui/icons/ViewModule";
+import ViewQuiltIcon from "@material-ui/icons/ViewQuilt";
 
 const ButtonPractice = () => {
+  const [alignment, setAlignment] = useState(null);
+
+  const handleAlignment = (event, newAlignment) => {
+    setAlignment(newAlignment);
+  };
   return (
     <>
       <Grid container spacing={3}>
@@ -106,6 +117,34 @@ const ButtonPractice = () => {
             <Button>Center</Button>
             <Button>RIght</Button>
           </ButtonGroup>
+        </Grid>
+
+        <Grid item xs={12} sm={12}>
+          <Typography variant="h2">Toggle Button Group </Typography>
+        </Grid>
+
+        <Grid item xs={12}>
+          <ToggleButtonGroup
+            value={alignment}
+            onChange={handleAlignment}
+            aria-label="text alignment"
+            size="small"
+            color="secondary"
+            orientation="horizontal"
+            exclusive
+          >
+            <ToggleButton value="left" aria-label="left aligned">
+              <ViewListIcon />
+            </ToggleButton>
+
+            <ToggleButton value="center" aria-label="centered">
+              <ViewModuleIcon />
+            </ToggleButton>
+
+            <ToggleButton value="right" aria-label="right">
+              <ViewQuiltIcon />
+            </ToggleButton>
+          </ToggleButtonGroup>
         </Grid>
       </Grid>
     </>
